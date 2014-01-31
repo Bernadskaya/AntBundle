@@ -1,0 +1,29 @@
+{% extends 'AntBundle::layout.html.twig' %}
+{% block metakeywords %}
+    <meta name="keywords" content="{{ entity.metaKey }}">
+    <meta name="description" content="{{ entity.metaDesc }}">
+{% endblock %}
+{% block content %}
+    {% trans_default_domain "AntBundle" %}
+    <div class="breadcrumb">
+        <a href="{{ path('news') }}">
+            {{ 'news.back'|trans }}
+        </a>
+    </div>
+    <div class="text-muted">
+        {{ entity.created|date('d.m.y H:i') }}
+    </div>
+    <div class="media">
+        {% if entity.getWebPath %}
+            <img src="{{ entity.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object pull-left" />
+        {% endif %}
+        <div class="media-body">
+            <h1 class="media-heading">{{ entity.title }}</h1>
+            <div class="lead">{{ entity.description }}</div>
+            <div>{{ entity.text |raw('html') }}</div>
+        </div>
+        <div class="text-muted">
+            {{ 'news.updated'| trans({}, 'AntBundle') }}  {{ entity.updated|date('d.m.y H:i') }}
+        </div>
+    </div>
+{% endblock %}

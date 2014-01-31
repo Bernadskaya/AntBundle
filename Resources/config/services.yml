@@ -1,0 +1,11 @@
+parameters:
+services:
+    sonata.admin.block.admin_head:
+        class: Ant\Bundle\Block\AdminHeadBlockService
+        arguments: ["sonata.admin.block.admin_head", @templating, @sonata.admin.pool]
+        tags:
+            - { name: sonata.block}
+
+
+
+

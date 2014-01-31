@@ -1,0 +1,11 @@
+{% block user_block %}
+
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ path ('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
+        <li><a href="{{ path('fos_user_security_logout') }}">
+                {{ 'user.signout'|trans({}, 'AntBundle') }}
+            </a>
+        </li>
+    </ul>
+
+{% endblock %}

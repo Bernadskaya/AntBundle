@@ -1,0 +1,15 @@
+ant_order:
+    resource: "@AntBundle/Resources/config/routing/orderform.yml"
+    prefix:   /order
+
+AntBundle_portfolio:
+    resource: "@AntBundle/Resources/config/routing/portfolioitem.yml"
+    prefix:   /portfolio
+
+AntBundle_news:
+    resource: "@AntBundle/Resources/config/routing/news.yml"
+    prefix:   /news
+
+AntBundle_page:
+    resource: "@AntBundle/Resources/config/routing/page.yml"
+    prefix:   /page

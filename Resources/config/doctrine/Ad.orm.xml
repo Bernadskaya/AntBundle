@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Ant\Bundle\Entity\Ad" table="ant_Ad">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+      <lifecycle-callbacks>
+          <lifecycle-callback type="prePersist" method="preUpload"/>
+          <lifecycle-callback type="preUpdate" method="preUpload"/>
+          <lifecycle-callback type="postPersist" method="upload"/>
+          <lifecycle-callback type="postUpdate" method="upload"/>
+          <lifecycle-callback type="postRemove" method="removeUpload"/>
+
+      </lifecycle-callbacks>
+    <field name="text" type="text" column="text"/>
+    <field name="path" type="string" column="path" length="255" nullable="true"/>
+    <field name="url" type="string" column="url" length="100" nullable="true"/>
+    <field name="position" type="integer" column="position"/>
+    <many-to-one field="adGroup" target-entity="AdGroup">
+          <join-column name="adGroup_id" referenced-column-name="id" />
+      </many-to-one>
+
+  </entity>
+</doctrine-mapping>

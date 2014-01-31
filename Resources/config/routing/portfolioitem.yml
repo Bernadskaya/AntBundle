@@ -1,0 +1,8 @@
+portfolio:
+    pattern:  /
+    defaults: { _controller: "AntBundle:PortfolioItem:index" }
+
+portfolio_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AntBundle:PortfolioItem:show" }
+

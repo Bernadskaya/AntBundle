@@ -1,0 +1,124 @@
+services:
+
+    sonata.admin.ads:
+        class: Ant\Bundle\Admin\AdAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "ad.all" }
+        arguments:
+            - ~
+            - Ant\Bundle\Entity\Ad
+            - ~
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+    sonata.admin.adGroup:
+        class: Ant\Bundle\Admin\AdGroupAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "adGroup.all" }
+        arguments:
+            - ~
+            - Ant\Bundle\Entity\AdGroup
+            - ~
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+
+    ant.admin.news:
+        class: Ant\Bundle\Admin\NewsAdmin
+        arguments:
+            - ~
+            - Ant\Bundle\Entity\News
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Content", label: "news.all"}
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+            - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
+
+    ant.admin.order_form:
+        class: Ant\Bundle\Admin\OrderFormAdmin
+        arguments:
+            - ~
+            - Ant\Bundle\Entity\OrderForm
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Content", label: "orders.all"}
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+
+    ant.admin.page:
+        class: Ant\Bundle\Admin\PageAdmin
+        arguments:
+            - ~
+            - Ant\Bundle\Entity\Page
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Pages", label: "pages.all"}
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+
+    ant.admin.portfolio:
+        class: Ant\Bundle\Admin\PortfolioAdmin
+        arguments:
+            - ~
+            - Ant\Bundle\Entity\Portfolio
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Portfolio", label: "portfolio.all"}
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+
+    ant.admin.portfolio_item:
+        class: Ant\Bundle\Admin\PortfolioItemAdmin
+        arguments:
+            - ~
+            - Ant\Bundle\Entity\PortfolioItem
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Portfolio", label: "pf_item.all"}
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+            - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
+    ant.admin.first_ad:
+        class: Ant\Bundle\Admin\FirstAdAdmin
+        arguments: [~, Ant\Bundle\Entity\Ad, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "ads.blocks", label: "ad.first"}
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+            - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
+
+    ant.admin.second_ad:
+        class: Ant\Bundle\Admin\SecondAdAdmin
+        arguments: [~, Ant\Bundle\Entity\Ad, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "ads.blocks", label: "ad.second"}
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+            - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
+
+    ant.admin.third_ad:
+        class: Ant\Bundle\Admin\ThirdAdAdmin
+        arguments: [~, Ant\Bundle\Entity\Ad, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm,  group: ads.blocks, label: "ad.third"}
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+            - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
+
+    ant.admin.fourth_ad:
+        class: Ant\Bundle\Admin\FourthAdAdmin
+        arguments: [~, Ant\Bundle\Entity\Ad, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm,  group: "ads.blocks", label: "ad.fourth"}
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+            - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
+
+    ant.admin.fifth_ad:
+        class: Ant\Bundle\Admin\FifthAdAdmin
+        arguments: [~, Ant\Bundle\Entity\Ad, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm,  group: "ads.blocks", label: "ad.fifth"}
+        calls:
+            - [ setTranslationDomain, [AntBundle]]
+            - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
+

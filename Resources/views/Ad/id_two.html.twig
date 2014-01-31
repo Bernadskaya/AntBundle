@@ -1,0 +1,13 @@
+<div class="row">
+    <div id="set">
+        <h2>{{ adGroupTitle }}</h2>
+        {% for entity in ad  %}
+            <div class="col-md-4 thumbnail">
+                {% if entity.getWebPath %}
+                    <img src="{{ entity.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object pull-left" />
+                {% endif %}
+                {{ entity.text|raw('html') }}
+            </div>
+        {% endfor %}
+    </div>
+</div>

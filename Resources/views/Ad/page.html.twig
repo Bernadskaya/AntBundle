@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+    {% block metakeywords %}
+        <meta name="keywords" content="{{ entity.metaKey }}"/>
+        <meta name="description" content="{{ entity.metaDesc }}"/>
+        <meta name="title" content="{{ entity.title }}"/>
+    {% endblock %}
+
+    {% block content%}
+        <ol class="breadcrumb"><li>Главная</li><li><a href="{{ path('portfolio') }}">Портфолио</a></li></ol>
+        <div class="row">
+        <h1>{{ entity.title }}</h1>
+        <div>{{ entity.body | raw('html') }}</div>
+        </div>
+    {% endblock %}

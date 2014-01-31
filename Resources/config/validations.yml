@@ -1,0 +1,5 @@
+Ant\Bundle\Entity\Ad:
+    properties:
+        file:
+            - File:
+                maxSize: 6000000

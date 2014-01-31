@@ -1,0 +1,111 @@
+admin:
+  actions: Действия
+adGroup:
+  all: Группы объявлений
+  id: ID
+  title: Название
+ad:
+  id: ID
+  all: Объявления
+  text: Текст объявления
+  file: Изображение
+  group: Блок
+  position: Позиция внутри блока
+  url: Ссылка
+  first: Первый блок
+  second: Второй блок
+  third: Третий блок
+  fourth: Четвертый блок
+  fifth: Пятый блок
+
+ads:
+  blocks: Блоки объявлений
+order:
+  new: Отправьте заявку
+news:
+  all: Новости
+  title: Заголовок
+  description: Краткое описание
+  text: Текст новости
+  metaKey: Ключевые слова
+  metaDesc: Описание для поисковых систем
+  file: Изображение
+  path: Имя файла
+  created: Время создания
+  updated: Последнее обновление
+  id: ID
+orders:
+  all: Заявки
+  name: Имя
+  surname: Фамилия
+  phone: Телефон
+  email: E-mail
+  id: ID
+  created: Дата
+pages:
+  all: Страницы
+  title: Заголовок
+  text: Текст на странице
+  metaKey: Ключевые слова
+  metaDesc: Описание для поисковых систем
+  id: ID
+portfolio:
+  id: ID
+  all: Портфолио
+  title: Заголовок
+  text: Текст новости
+  metaKey: Ключевые слова
+  metaDesc: Описание для поисковых систем
+  position: Положение
+  created: Создано
+  description: Описание
+pf_item:
+  all: Изображения для портфолио
+  path: Имя файла
+  created: Создано
+menu:
+  backend:
+    index: Главная страница
+    ads: Блоки на главной
+    news: Новости
+    pages: Страницы
+    orders: Заявки
+    pf_all: Портфолио
+    pf_items: Фотографии
+    pf_albums: Альбомы
+  frontend:
+    index: Главная
+    news: Новости
+    portfolio: Портфолио
+    contacts: Контакты
+    order:  Отправить заявку
+    services: Услуги
+    services_1: Услуга №1
+    services_2: Услуга №2
+order:
+  new: Отправить заявку
+  name: Имя
+  surname: Фамилия
+  email: E-mail
+  phone: Телефон
+  create: Отправить
+news:
+  all: Все новости
+  list:  Новости
+  read:  Подробнее
+  back:  Назад
+  title: Заголовок
+  description: Вступительный абзац
+  text: Полный текст
+  metaKey: Ключевые слова
+  metaDesc: Описание для поисковых систем
+  file: Изображение
+  created: Создано
+  updated: Обновлено
+user:
+  signout: Выйти
+layout:
+  login: Вход в панель управления
+  forgot: Забыли пароль?
+admin:
+  actions: Действия
