@@ -278,5 +278,57 @@ class Ad
         $this->upload();
     }
 
-}
 
+    /**
+     * Set path
+     *
+     * @param string $path
+     *
+     * @return Ad
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+    /**
+     * @var \Ant\Bundle\Entity\Image
+     */
+    private $image;
+
+
+    /**
+     * Set image
+     *
+     * @param \Ant\Bundle\Entity\Image $image
+     *
+     * @return Ad
+     */
+    public function setImage(\Ant\Bundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Ant\Bundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+}

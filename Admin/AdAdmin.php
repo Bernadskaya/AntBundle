@@ -1,109 +1,138 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nevada
- * Date: 07.01.14
- * Time: 14:53
- */
 
 namespace Ant\Bundle\Admin;
+
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class AdAdmin extends Admin {
-
+class AdAdmin extends Admin
+{
     protected $baseRouteName = 'ads';
     protected $baseRoutePattern = 'ads';
 
     protected function configureFormFields(FormMapper $formMapper)
     {
         $adGroupFieldOptions = array(
-            'property'=>'title',
-            'label'=>'ad.group',
-            'attr' => array('class'=>'form-control')
+            'property' => 'title',
+            'label'    => 'ad.group',
+            'attr'     => array('class' => 'form-control')
         );
         $formMapper
-            ->add('text','textarea', array(
+            ->add('text', 'textarea', array(
                 'required' => false,
-                'label'=>'ad.text',
-                'attr' => array(
-                    'class' => 'form-control tinymce',
-                    'tinymce'=>'{"theme":"simple"}',
-                )))
-            ->add('file','file', array (
+                'label'    => 'ad.text',
+                'attr'     => array(
+                    'class'   => 'form-control tinymce',
+                    'tinymce' => '{"theme":"simple"}',
+                )
+            ))
+            ->add('file', 'file', array(
                 'required' => false,
-                'label'=>'ad.file',
+                'label'    => 'ad.file',
             ))
             ->add('adGroup', 'sonata_type_model', $adGroupFieldOptions)
-            ->add('position','text', array (
+            ->add('position', 'text', array(
                 'required' => false,
-                'attr' => array('class'=>'form-control'),
-                'label'=>'ad.position'
+                'attr'     => array('class' => 'form-control'),
+                'label'    => 'ad.position'
             ))
-            ->add('url','text', array (
+            ->add('url', 'text', array(
                 'required' => false,
-                'attr' => array('class'=>'form-control'),
-                'label'=>'ad.url'
+                'attr'     => array('class' => 'form-control'),
+                'label'    => 'ad.url'
             ))
-
+            ->add('image', 'sonata_type_admin', array(
+                'label' => false,
+            ), array(
+                'edit' => 'admin',
+            ))
         ;
     }
 
-    protected  function AdQuery ($id) {
+    protected function AdQuery($id)
+    {
         $em = $this->modelManager->getEntityManager('Ant\Bundle\Entity\Ad');
 
-        $queryBuilder = $em
-            ->createQueryBuilder('a')
+        $queryBuilder = $em->createQueryBuilder('a')
             ->select('a')
             ->from('AntBundle:Ad', 'a')
-            ->where('a.adGroup = :id')
-            ->setParameter('id', $id);
+            ->where('a.adGroup = :id')->setParameter('id', $id)
+        ;
 
         return $queryBuilder;
     }
 
-    protected function AdGroupQuery ($id) {
+    protected function AdGroupQuery($id)
+    {
         $em = $this->modelManager->getEntityManager('Ant\Bundle\Entity\AdGroup');
 
-        $queryBuilder = $em
-            ->createQueryBuilder('a')
+        $queryBuilder = $em->createQueryBuilder('a')
             ->select('a')
             ->from('AntBundle:AdGroup', 'a')
-            ->where('a.id = :id')
-            ->setParameter('id', $id);
+            ->where('a.id = :id')->setParameter('id', $id)
+        ;
 
         return $queryBuilder;
-
     }
 
-    // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper
-            ->add('id')
-        ;
+        $datagridMapper->add('id');
     }
 
-    // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id',null, array(
-                'label'=>'ad.id'))
-            ->add('adGroup.title',null,array('label'=>'ad.group'))
+            ->addIdentifier('id', null, array('label' => 'ad.id'))
+            ->add('adGroup.title', null, array('label' => 'ad.group'))
             ->add('text', null, array('template' => 'AntBundle::list_custom.html.twig'))
-            ->add('url',null, array(
-                'label'=>'ad.url'))
+            ->add('url', null, array('label' => 'ad.url'))
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
+                    'show'   => array(),
+                    'edit'   => array(),
                     'delete' => array(),
                 )
             ))
         ;
     }
 
-} 
+    public function prePersist($ad)
+    {
+        $this->manageEmbeddedImageAdmins($ad);
+    }
+
+    public function preUpdate($ad)
+    {
+        $this->manageEmbeddedImageAdmins($ad);
+    }
+
+    private function manageEmbeddedImageAdmins($ad)
+    {
+        foreach ($this->getFormFieldDescriptions() as $fieldName => $fieldDescription) {
+            if ($fieldDescription->getType() === 'sonata_type_admin'
+                && ($associationMapping = $fieldDescription->getAssociationMapping())
+                && $associationMapping['targetEntity'] === 'Ant\Bundle\Entity\Image'
+            ) {
+                $getter = 'get'.$fieldName;
+                $setter = 'set'.$fieldName;
+
+                $image = $ad->$getter();
+
+                if ($image) {
+                    $request = $this->getRequest()->get($fieldDescription->getAdmin()->getUniqid());
+                    if ((!is_object($image->getUploadFile()) && !$image->getPath())
+                        || isset($request[$fieldName]['_delete'])
+                    ) {
+                        $ad->$setter(null);
+                    } else {
+                        $image->setAd($ad);
+                        $image->setUpdated(new \DateTime());
+                    }
+                }
+            }
+        }
+    }
+}

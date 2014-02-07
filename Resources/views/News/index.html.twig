@@ -3,9 +3,9 @@
 {% block content %}
 {% trans_default_domain "AntBundle" %}
 
-    {% set menuItem = knp_menu_get('AntBundle:FrontendBuilder:mainMenu').getBreadcrumbsArray() %}
+    {#{% set menuItem = knp_menu_get('AntBundle:FrontendBuilder:mainMenu').getBreadcrumbsArray() %}#}
 
-    {{ knp_menu_render(menuItem) }}
+    {#{{ knp_menu_render(menuItem) }}#}
 
 
     <div class="breadcrumb">
@@ -20,8 +20,10 @@
         {% for entity in pagination %}
 
             <li class="media">
+                {% if entity.image %}
                 <a href="{{ path('ant_news_show', { 'slug': entity.slug, 'id': entity.id }) }}" class="pull-left">
-                    <img src="{{ entity.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object" /></a>
+                    <img src="{{ entity.image.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object" /></a>
+                {% endif %}
 
                 <div class="media-body">
                     <div class="text-muted">

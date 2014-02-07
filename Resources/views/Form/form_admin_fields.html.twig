@@ -9,6 +9,8 @@ file that was distributed with this source code.
 
 #}
 
+{% extends 'SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig' %}
+
 {# Labels #}
 {% block form_label %}
 {% spaceless %}
@@ -112,9 +114,9 @@ file that was distributed with this source code.
 
 {% block form_row %}
     {% if sonata_admin is not defined or not sonata_admin_enabled or not sonata_admin.field_description %}
-        <div class="input-group {% if errors|length > 0%} error{% endif %}">
+        <div class="form-group {% if errors|length > 0%} error{% endif %}">
             {{ form_label(form, label|default(null)) }}
-            <div class="controls {% if label is sameas(false) %}sonata-collection-row-without-label{% endif %}">
+            <div class="col-sm-8 controls {% if label is sameas(false) %}sonata-collection-row-without-label{% endif %}">
                 {{ form_widget(form) }}
                 {% if errors|length > 0 %}
                     <div class="help-inline sonata-ba-field-error-messages">
@@ -124,7 +126,7 @@ file that was distributed with this source code.
             </div>
         </div>
     {% else %}
-        <div class="form-group{% if errors|length > 0%} error{%endif%}" id="sonata-ba-field-container-{{ id }}">
+        <div class="{{ form.children is empty ? 'form-group' : ''}}{% if errors|length > 0%} error{%endif%}" id="sonata-ba-field-container-{{ id }}">
             {% block label %}
                 {% if sonata_admin.field_description.options.name is defined %}
                     {{ form_label(form, sonata_admin.field_description.options.name, { 'attr' : {'class' : 'control-label'} }) }}
@@ -134,8 +136,8 @@ file that was distributed with this source code.
             {% endblock %}
 
             {% set has_label = sonata_admin.field_description.options.name is defined or label is not sameas(false) %}
-            <div class="col-sm-8 controls sonata-ba-field sonata-ba-field-{{ sonata_admin.edit }}-{{ sonata_admin.inline }}
-             {% if errors|length > 0 %}sonata-ba-field-error{% endif %} {% if not has_label %}sonata-collection-row-without-label{% endif %}">
+            <div class="{% if form.children is empty %}col-sm-8 controls sonata-ba-field sonata-ba-field-{{ sonata_admin.edit }}-{{ sonata_admin.inline }}
+             {% if errors|length > 0 %}sonata-ba-field-error{% endif %} {% if not has_label %}sonata-collection-row-without-label{% endif %}{% endif %}">
 
                 {{ form_widget(form) }}
 
@@ -216,8 +218,6 @@ file that was distributed with this source code.
     {% endspaceless %}
 {% endblock %}
 
-
-{% block form_widget %}
-    {% set type = type|default('text') %}
-    <input type="{{ type }}" {{ block('widget_attributes') }} class="form-control" />
+{% block sonata_admin_orm_one_to_many_widget %}
+    {% include 'AntBundle:CRUD:edit_orm_one_to_many.html.twig' %}
 {% endblock %}

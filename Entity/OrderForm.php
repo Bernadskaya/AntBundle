@@ -157,5 +157,18 @@ class OrderForm
     {
         return $this->created;
     }
-}
 
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return OrderForm
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+}

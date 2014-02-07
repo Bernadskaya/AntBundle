@@ -17,7 +17,6 @@ ad:
   third: Третий блок
   fourth: Четвертый блок
   fifth: Пятый блок
-
 ads:
   blocks: Блоки объявлений
 order:
@@ -59,6 +58,7 @@ portfolio:
   position: Положение
   created: Создано
   description: Описание
+  images: Изображения
 pf_item:
   all: Изображения для портфолио
   path: Имя файла
@@ -102,6 +102,9 @@ news:
   file: Изображение
   created: Создано
   updated: Обновлено
+  one: Новость
+  images: Изображения
+  id: ID
 user:
   signout: Выйти
 layout:

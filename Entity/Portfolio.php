@@ -221,4 +221,102 @@ class Portfolio {
         return $this->slug;
     }
 
-} 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->portfolioItem = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Portfolio
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return Portfolio
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Add portfolioItem
+     *
+     * @param \Ant\Bundle\Entity\PortfolioItem $portfolioItem
+     *
+     * @return Portfolio
+     */
+    public function addPortfolioItem(\Ant\Bundle\Entity\PortfolioItem $portfolioItem)
+    {
+        $this->portfolioItem[] = $portfolioItem;
+
+        return $this;
+    }
+
+    /**
+     * Remove portfolioItem
+     *
+     * @param \Ant\Bundle\Entity\PortfolioItem $portfolioItem
+     */
+    public function removePortfolioItem(\Ant\Bundle\Entity\PortfolioItem $portfolioItem)
+    {
+        $this->portfolioItem->removeElement($portfolioItem);
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $images;
+
+
+    /**
+     * Add images
+     *
+     * @param \Ant\Bundle\Entity\Image $images
+     *
+     * @return Portfolio
+     */
+    public function addImage(\Ant\Bundle\Entity\Image $images)
+    {
+        $this->images[] = $images;
+
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \Ant\Bundle\Entity\Image $images
+     */
+    public function removeImage(\Ant\Bundle\Entity\Image $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+}

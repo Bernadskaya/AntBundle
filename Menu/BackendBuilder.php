@@ -31,21 +31,21 @@ class BackendBuilder extends ContainerAware {
             ->addChild('Pages', array('label'=>'menu.backend.pages','route' => 'page_list'))
             ->setExtra('translation_domain', 'AntBundle');
         $menu
-            ->addChild('Portfolio', array('label'=>'menu.backend.pf_all'))
-            ->setAttributes(array ('class'=>'dropdown'))
+            ->addChild('Portfolio', array('label'=>'menu.backend.pf_all','route' => 'pf_list'))
+//            ->setAttributes(array ('class'=>'dropdown'))
             ->setExtra('translation_domain', 'AntBundle');
         $menu
             ->addChild('Orders', array('label'=>'menu.backend.orders','route' => 'order_list'))
             ->setExtra('translation_domain', 'AntBundle');
-        $menu['Portfolio']->setUri('#');
-        $menu['Portfolio']
-            ->addChild('Items', array('label'=>'menu.backend.pf_items','route' => 'pf_item_list'))
-            ->setExtra('translation_domain', 'AntBundle');
-        $menu['Portfolio']
-            ->addChild('Albums', array('label'=>'menu.backend.pf_albums','route' => 'pf_list'))
-            ->setExtra('translation_domain', 'AntBundle');
-        $menu['Portfolio']->setChildrenAttributes(array ('class'=>'dropdown-menu'));
-        $menu['Portfolio']->setLinkAttributes(array ('data-toggle'=>'dropdown','class'=>'dropdown-toggle'));
+//        $menu['Portfolio']->setUri('#');
+//        $menu['Portfolio']
+//            ->addChild('Images', array('label'=>'menu.backend.pf_items','route' => 'pf_images_list'))
+//            ->setExtra('translation_domain', 'AntBundle');
+//        $menu['Portfolio']
+//            ->addChild('Albums', array('label'=>'menu.backend.pf_albums','route' => 'pf_list'))
+//            ->setExtra('translation_domain', 'AntBundle');
+//        $menu['Portfolio']->setChildrenAttributes(array ('class'=>'dropdown-menu'));
+//        $menu['Portfolio']->setLinkAttributes(array ('data-toggle'=>'dropdown','class'=>'dropdown-toggle'));
 
 
         return $menu;

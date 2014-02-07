@@ -82,7 +82,7 @@ class News
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -106,7 +106,7 @@ class News
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -117,7 +117,7 @@ class News
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -141,7 +141,7 @@ class News
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -165,7 +165,7 @@ class News
     /**
      * Get text
      *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
@@ -189,7 +189,7 @@ class News
     /**
      * Get metaKey
      *
-     * @return string 
+     * @return string
      */
     public function getMetaKey()
     {
@@ -213,7 +213,7 @@ class News
     /**
      * Get metaDesc
      *
-     * @return string 
+     * @return string
      */
     public function getMetaDesc()
     {
@@ -237,7 +237,7 @@ class News
     /**
      * Get path
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {
@@ -265,7 +265,7 @@ class News
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -391,5 +391,75 @@ class News
     public function lifecycleFileUpload() {
         $this->upload();
     }
-}
 
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return News
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return News
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return News
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+    /**
+     * @var \Ant\Bundle\Entity\Image
+     */
+    private $image;
+
+
+    /**
+     * Set image
+     *
+     * @param \Ant\Bundle\Entity\Image $image
+     *
+     * @return News
+     */
+    public function setImage(\Ant\Bundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Ant\Bundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+}

@@ -46,7 +46,9 @@ class PortfolioItemController extends Controller
 
     public function ImageAction ($portfolioId) {
         $em = $this->getDoctrine()->getManager();
-        $portfolioItemSet = $em->getRepository('AntBundle:PortfolioItem')->findByPortfolioId($portfolioId);
+//        $portfolioItemSet = $em->getRepository('AntBundle:PortfolioItem')->findByPortfolioId($portfolioId);
+        $portfolio = $em->getRepository('AntBundle:Portfolio')->find($portfolioId);
+        $portfolioItemSet = $portfolio->getImages();
 
         foreach ($portfolioItemSet as $portfolioItem) {
             $webPath = $portfolioItem->getWebPath();
@@ -77,7 +79,7 @@ class PortfolioItemController extends Controller
         }
 
         return $this->render('AntBundle:PortfolioItem:last.html.twig', array(
-            'portfolio' =>$portfolio,
+//            'portfolio' =>$portfolio,
             'portfolioSet'=>$portfolioSet,
             'pagination' => $pagination
         ));
@@ -96,7 +98,7 @@ class PortfolioItemController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $portfolio = $em->getRepository('AntBundle:Portfolio')->find($id);
-        $portfolioItem = $em->getRepository('AntBundle:PortfolioItem')->findByPortfolioId($id);
+        $portfolioItem = $em->getRepository('AntBundle:Image')->findByPortfolio($portfolio);
 
         if (!$portfolioItem) {
             throw $this->createNotFoundException('Unable to find PortfolioItem entity.');

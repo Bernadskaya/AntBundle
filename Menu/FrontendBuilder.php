@@ -84,4 +84,4 @@ class FrontendBuilder extends ContainerAware {
         return $menu;
     }
 
-} 
+}
