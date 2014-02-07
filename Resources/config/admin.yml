@@ -31,7 +31,6 @@ services:
             - {name: sonata.admin, manager_type: orm, group: "Content", label: "news.all"}
         calls:
             - [ setTranslationDomain, [AntBundle]]
-            - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
 
     ant.admin.order_form:
         class: Ant\Bundle\Admin\OrderFormAdmin
@@ -66,17 +65,18 @@ services:
         calls:
             - [ setTranslationDomain, [AntBundle]]
 
-    ant.admin.portfolio_item:
-        class: Ant\Bundle\Admin\PortfolioItemAdmin
-        arguments:
-            - ~
-            - Ant\Bundle\Entity\PortfolioItem
-            - ~
-        tags:
-            - {name: sonata.admin, manager_type: orm, group: "Portfolio", label: "pf_item.all"}
-        calls:
-            - [ setTranslationDomain, [AntBundle]]
-            - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
+#    ant.admin.portfolio_item:
+#        class: Ant\Bundle\Admin\PortfolioItemAdmin
+#        arguments:
+#            - ~
+#            - Ant\Bundle\Entity\PortfolioItem
+#            - ~
+#        tags:
+#            - {name: sonata.admin, manager_type: orm, group: "Portfolio", label: "pf_item.all"}
+#        calls:
+#            - [ setTranslationDomain, [AntBundle]]
+#            - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
+
     ant.admin.first_ad:
         class: Ant\Bundle\Admin\FirstAdAdmin
         arguments: [~, Ant\Bundle\Entity\Ad, SonataAdminBundle:CRUD]
@@ -122,3 +122,8 @@ services:
             - [ setTranslationDomain, [AntBundle]]
             - [ setTemplate, [edit, AntBundle:CRUD:img_edit.html.twig]]
 
+    ant.admin.image:
+        class: Ant\Bundle\Admin\ImageAdmin
+        arguments: [~, Ant\Bundle\Entity\Image, ~]
+        tags: [{name: sonata.admin, manager_type: orm, show_in_dashboard: false }]
+        calls: [[ setTranslationDomain, [AntBundle]]]

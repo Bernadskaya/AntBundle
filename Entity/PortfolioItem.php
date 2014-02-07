@@ -213,4 +213,42 @@ class PortfolioItem
     }
 
 
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     *
+     * @return PortfolioItem
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return PortfolioItem
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
 }

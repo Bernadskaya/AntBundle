@@ -20,5 +20,8 @@
         </field>
         <one-to-many field="portfolioItem" target-entity="PortfolioItem" mapped-by="portfolioId" />
 
+        <one-to-many field="images" target-entity="Image" mapped-by="portfolio" orphan-removal="true">
+            <cascade><cascade-all /></cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

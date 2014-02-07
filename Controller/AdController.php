@@ -39,7 +39,10 @@ class AdController extends Controller
         $adGroup = $this->getDoctrine()
             ->getRepository('AntBundle:AdGroup')
             ->find($id);
-        $adGroupTitle = $adGroup->getTitle();
+        $adGroupTitle = '';
+        if ($adGroup) {
+            $adGroupTitle = $adGroup->getTitle();
+        }
 
         return $this->render($adGroupTemplate, array(
             'ad'=>$ad,

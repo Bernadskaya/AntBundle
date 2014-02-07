@@ -16,8 +16,8 @@
             {% if loop.first %}
             <div class="item active">
 
-                {% if entity.getWebPath %}
-                <img src="{{ entity.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object pull-left" />
+                {% if entity.image %}
+                <img src="{{ entity.image.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object pull-left" />
                 {% endif %}
                 <div class="carousel-caption">
                     {{ entity.text |raw('html') }}
@@ -25,8 +25,8 @@
             </div>
             {% else %}
             <div class="item ">
-                {% if entity.getWebPath %}
-                    <img src="{{ entity.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object pull-left" />
+                {% if entity.image %}
+                    <img src="{{ entity.image.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object pull-left" />
                 {% endif %}
                 <div class="carousel-caption">
                     {{ entity.text |raw('html') }}

@@ -14,8 +14,8 @@
         {{ entity.created|date('d.m.y H:i') }}
     </div>
     <div class="media">
-        {% if entity.getWebPath %}
-            <img src="{{ entity.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object pull-left" />
+        {% if entity.image %}
+            <img src="{{ entity.image.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object pull-left" />
         {% endif %}
         <div class="media-body">
             <h1 class="media-heading">{{ entity.title }}</h1>
