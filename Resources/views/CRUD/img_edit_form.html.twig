@@ -39,8 +39,8 @@
                         <div class="tab-pane {% if loop.first %} active{% endif %}" id="{{ admin.uniqid }}_{{ loop.index }}">
                             <div class="row">
                                 <p class="col-sm-8 col-sm-push-2">
-                                    {% if object.getWebPath %}
-                                    <img src="{{ object.getWebPath | imagine_filter('admin_thumb_l')  }}" class="img-rounded img-responsive media-object pull-left" />
+                                    {% if object.image.getWebPath %}
+                                    <img src="{{ object.image.getWebPath | imagine_filter('admin_thumb_l')  }}" class="img-rounded img-responsive media-object pull-left" />
                                     {% endif %}
                                 </p>
                             </div>

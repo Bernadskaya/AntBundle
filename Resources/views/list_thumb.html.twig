@@ -3,6 +3,6 @@
 
 {% block field%}
 
-    <img src="{{ object.getWebPath | imagine_filter('admin_thumb')  }}" class="img-rounded img-responsive media-object pull-left" />
+    <img src="{{ object.image.getWebPath | imagine_filter('admin_thumb')  }}" class="img-rounded img-responsive media-object pull-left" />
     <p>{{ object.path }}</p>
 {% endblock %}
