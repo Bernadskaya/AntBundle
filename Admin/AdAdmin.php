@@ -28,10 +28,6 @@ class AdAdmin extends Admin
                     'tinymce' => '{"theme":"simple"}',
                 )
             ))
-            ->add('file', 'file', array(
-                'required' => false,
-                'label'    => 'ad.file',
-            ))
             ->add('adGroup', 'sonata_type_model', $adGroupFieldOptions)
             ->add('position', 'text', array(
                 'required' => false,
