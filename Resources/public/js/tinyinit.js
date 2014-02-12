@@ -7,5 +7,8 @@ tinymce.init({
 	language_url: "",
 	menubar : false,
 	height: 300,
-	width: 700
+	width: 700,
+	force_br_newlines : false,
+	force_p_newlines : false,
+	forced_root_block : ''
 });
