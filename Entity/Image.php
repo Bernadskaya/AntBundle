@@ -251,13 +251,14 @@ class Image
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'/../../../../../../web'.$this->getUploadDir();
+
+        return __DIR__.'/../web'.$this->getUploadDir();
     }
 
     protected function getUploadDir()
     {
         if (!$this->uploadDir) {
-            $config = Yaml::parse(__DIR__.'/../../../../../../app/config/config.yml');
+            $config = Yaml::parse(__DIR__.'/../app/config/config.yml');
             $this->uploadDir = isset($config['ant']['upload_dir']) ? $config['ant']['upload_dir'] : '/uploads';
         }
         return $this->uploadDir;
