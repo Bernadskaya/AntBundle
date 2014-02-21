@@ -252,15 +252,8 @@ class Image
     protected function getUploadRootDir()
     {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         return __DIR__.'../../../../../../web'.$this->getUploadDir();
-=======
-        return __DIR__.'/../../../../../../web'.$this->getUploadDir();
->>>>>>> 20addb012696c3e3524643e42cabcb164d2d87fc
-=======
-        return __DIR__.'/../../../../../../web'.$this->getUploadDir();
->>>>>>> 20addb012696c3e3524643e42cabcb164d2d87fc
+
     }
 
     protected function getUploadDir()
