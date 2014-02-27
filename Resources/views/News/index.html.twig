@@ -1,53 +1,42 @@
-{% extends 'AntBundle::layout.html.twig' %}
+{% extends '::base.html.twig' %}
 
-{% block content %}
-{% trans_default_domain "AntBundle" %}
+{% block body -%}
+    <h1>News list</h1>
 
-    {#{% set menuItem = knp_menu_get('AntBundle:FrontendBuilder:mainMenu').getBreadcrumbsArray() %}#}
-
-    {#{{ knp_menu_render(menuItem) }}#}
-
-
-    <div class="breadcrumb">
-        <a href="{{ path('news') }}">
-            {{ 'news.back'|trans }}
-        </a>
-    </div>
-    <h1>{{ 'news.list'|trans }}</h1>
-
-
-    <ul class="media-list">
-        {% for entity in pagination %}
-
-            <li class="media">
-                {% if entity.image %}
-                <a href="{{ path('ant_news_show', { 'slug': entity.slug, 'id': entity.id }) }}" class="pull-left">
-                    <img src="{{ entity.image.getWebPath | imagine_filter('my_thumb_out')  }}" class="img-rounded img-responsive media-object" /></a>
-                {% endif %}
-
-                <div class="media-body">
-                    <div class="text-muted">
-                        {% if entity.created %}
-                            {{ entity.created|date('d.m.y H:i') }}
-                        {% endif %}
-                    </div>
-                    <h2 class="media-heading">
-                        {{ entity.title }}
-                    </h2>
-                    <div class="lead">
-                        {{ entity.description }}
-                    </div>
-
-                    <div>
-                        <a href="{{ path('ant_news_show', { 'slug': entity.slug, 'id': entity.id }) }}"> {{ 'news.read'|trans }}</a>
-                    </div>
-                </div>
-            </li>
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Text</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('news_show', { 'id': entity.id }) }}">{{ entity.text }}</a></td>
+                <td>{{ entity.id }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('news_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('news_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                    <img src="{% path entity.getMedia, 'small' %}">
+                </ul>
+                </td>
+            </tr>
         {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('news_new') }}">
+                Create a new entry
+            </a>
+        </li>
     </ul>
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
-
-
     {% endblock %}

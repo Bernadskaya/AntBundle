@@ -1,10 +1,30 @@
 news:
-    pattern:  /
+    path:     /
     defaults: { _controller: "AntBundle:News:index" }
 
-ant_news_show:
-    pattern:  /{id}/{slug}
+news_show:
+    path:     /{id}/show
     defaults: { _controller: "AntBundle:News:show" }
 
+news_new:
+    path:     /new
+    defaults: { _controller: "AntBundle:News:new" }
 
+news_create:
+    path:     /create
+    defaults: { _controller: "AntBundle:News:create" }
+    requirements: { _method: post }
 
+news_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AntBundle:News:edit" }
+
+news_update:
+    path:     /{id}/update
+    defaults: { _controller: "AntBundle:News:update" }
+    requirements: { _method: post|put }
+
+news_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AntBundle:News:delete" }
+    requirements: { _method: post|delete }

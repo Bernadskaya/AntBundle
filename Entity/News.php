@@ -2,9 +2,8 @@
 
 namespace Ant\Bundle\Entity;
 
-use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
+use Sonata\CoreBundle\Model\BaseEntityManager;
+use Gedmo;
 /**
  * News
  */
@@ -18,127 +17,35 @@ class News
     /**
      * @var string
      */
-    private $title;
-
-    /**
-     *
-     * @Gedmo\Slug(fields={"title"})
-     */
-    private $slug;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * @var string
-     */
     private $text;
 
-    /**
-     * @var string
-     */
-    private $metaKey;
+//    /**
+//     * @var \DateTime $createdAt
+//     *
+//     */
+//    private $createdAt;
+//
+//    /**
+//     * @var \DateTime $updatedAt
+//     *
+//     *
+//     */
+//    private $updatedAt;
+
 
     /**
-     * @var string
+     * @var \Application\Sonata\MediaBundle\Entity\Media $media
      */
-    private $metaDesc;
-
-    /**
-     * @var string
-     */
-    private $path;
-
-    /**
-     * @var \DateTime
-     *
-     * @Gedmo\Timestampable(on="create")
-     */
-    private $created;
-
-    /**
-     * @var \DateTime
-     *
-     * @Gedmo\Timestampable(on="update")
-     */
-    private $updated;
-
-    /**
-     * @var \DateTime $contentChanged
-     *
-     * @Gedmo\Timestampable(on="change", field={"title", "text"})
-     */
-    private $contentChanged;
+    private $media;
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return News
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return News
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
@@ -158,166 +65,109 @@ class News
     /**
      * Get text
      *
-     * @return string
+     * @return string 
      */
     public function getText()
     {
         return $this->text;
     }
 
+
     /**
-     * Set metaKey
+     * Set media
      *
-     * @param string $metaKey
+     * @param \Application\Sonata\MediaBundle\Entity\Media $media
      *
      * @return News
      */
-    public function setMetaKey($metaKey)
+    public function setMedia($media)
     {
-        $this->metaKey = $metaKey;
+        $this->media = $media;
 
         return $this;
     }
 
     /**
-     * Get metaKey
+     * Get media
      *
-     * @return string
+     * @return \Application\Sonata\MediaBundle\Entity\Media
      */
-    public function getMetaKey()
+    public function getMedia()
     {
-        return $this->metaKey;
-    }
-
-    /**
-     * Set metaDesc
-     *
-     * @param string $metaDesc
-     *
-     * @return News
-     */
-    public function setMetaDesc($metaDesc)
-    {
-        $this->metaDesc = $metaDesc;
-
-        return $this;
-    }
-
-    /**
-     * Get metaDesc
-     *
-     * @return string
-     */
-    public function getMetaDesc()
-    {
-        return $this->metaDesc;
+        return $this->media;
     }
 
 
 
-    public function getContentChanged()
-    {
-        return $this->contentChanged;
-    }
-
-    /**
-     * Get created
-     *
-     * @return \DateTime
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * Get updated
-     *
-     * @return \DateTime
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
-
-
-    public function getImageUrl()
-    {
-        return null === $this->path
-            ? null
-            :  $this->path;
-    }
-
-
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return News
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Set created
-     *
-     * @param \DateTime $created
-     *
-     * @return News
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    /**
-     * Set updated
-     *
-     * @param \DateTime $updated
-     *
-     * @return News
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-
-        return $this;
-    }
-    /**
-     * @var \Ant\Bundle\Entity\Image
-     */
-    private $image;
-
-
-    /**
-     * Set image
-     *
-     * @param \Ant\Bundle\Entity\Image $image
-     *
-     * @return News
-     */
-    public function setImage(\Ant\Bundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \Ant\Bundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
+///*
+//    /**
+//     * Set createdAt
+//     *
+//     * @param \DateTime $createdAt
+//     *
+//     * @return News
+//     */
+//    public function setCreatedAt($createdAt)
+//    {
+//        $this->createdAt = $createdAt;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get createdAt
+//     *
+//     * @return \DateTime
+//     */
+//    public function getCreatedAt()
+//    {
+//        return $this->createdAt;
+//    }
+//
+//    /**
+//     * Set updatedAt
+//     *
+//     * @param \DateTime $updatedAt
+//     *
+//     * @return News
+//     */
+//    public function setUpdatedAt($updatedAt)
+//    {
+//        $this->updatedAt = $updatedAt;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get updatedAt
+//     *
+//     * @return \DateTime
+//     */
+//    public function getUpdatedAt()
+//    {
+//        return $this->updatedAt;
+//    }
+//
+//
+//
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function prePersist()
+//    {
+//
+//
+//        // fix weird bug with setter object not being call
+//        $this->setMedia($this->getMedia());
+//    }
+//
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function preUpdate()
+//    {
+//        // fix weird bug with setter object not being call
+//        $this->setMedia($this->getMedia());
+//    }
 }
+

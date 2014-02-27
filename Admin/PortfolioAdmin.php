@@ -10,121 +10,56 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class PortfolioAdmin extends Admin
 {
+
     protected $baseRouteName = 'pf';
     protected $baseRoutePattern = 'pf';
-
-    protected function configureFormFields(FormMapper $formMapper)
-    {
-        $this->setFormTheme(array(
-            'AntBundle:Form:form_admin_fields.html.twig',
-        ));
-
-        $formMapper
-            ->add('title', 'text', array(
-                'label' => 'portfolio.title',
-                'attr'  => array('class' => 'form-control')
-            ))
-            ->add('description', 'textarea', array(
-                'label' => 'portfolio.description',
-                'attr'  => array('class' => 'form-control')
-            ))
-            ->add('metaKey', 'text', array(
-                'label' => 'portfolio.metaKey',
-                'attr'  => array('class' => 'form-control')
-            ))
-            ->add('metaDesc', 'text', array(
-                'label' => 'portfolio.metaDesc',
-                'attr'  => array('class' => 'form-control')
-            ))
-            ->add('position', 'text', array(
-                'label' => 'portfolio.position',
-                'attr'  => array('class' => 'form-control')
-            ))
-            ->add('images', 'sonata_type_collection', array(
-                'label'    => 'portfolio.images',
-                'required' => false,
-            ), array(
-                'edit'     => 'inline',
-                'inline'   => 'table',
-                'sotrable' => 'position',
-            ))
-        ;
-    }
-
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('title', null, array('label' => 'portfolio.title'))
-            ->add('description', null, array('label' => 'portfolio.title'))
-            ->add('metaKey', null, array('label' => 'portfolio.description'))
-            ->add('metaDesc', null, array('label' => 'portfolio.metaDesc'))
-            ->add('position', null, array('label' => 'portfolio.position'))
-            ->add('created', null, array('label' => 'portfolio.created'))
-            ->add('id', null, array('label' => 'portfolio.id'))
-        ;
-    }
-
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id', null, array('label' => 'portfolio.id'))
-            ->add('title', null, array('label' => 'portfolio.title'))
-            ->add('position', null, array('label' => 'portfolio.position'))
-            ->add('created', null, array('label' => 'portfolio.created'))
+            ->add('description')
+            ->add('id')
         ;
     }
 
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id', null, array('label' => 'portfolio.id'))
-            ->add('title', null, array('label' => 'portfolio.title'))
-            ->add('created', null, array('label' => 'portfolio.created'))
+            ->add('description')
+            ->add('id')
             ->add('_action', 'actions', array(
-                'label'   => 'admin.action',
                 'actions' => array(
-                    'show'   => array(),
-                    'edit'   => array(),
+                    'show' => array(),
+                    'edit' => array(),
                     'delete' => array(),
                 )
             ))
         ;
     }
 
-    public function prePersist($pf)
+    /**
+     * @param FormMapper $formMapper
+     */
+    protected function configureFormFields(FormMapper $formMapper)
     {
-        $this->manageEmbeddedImageAdmins($pf);
+        $formMapper
+            ->add('description')
+            ->add('gallery', 'sonata_type_admin');
     }
 
-    public function preUpdate($pf)
+    /**
+     * @param ShowMapper $showMapper
+     */
+    protected function configureShowFields(ShowMapper $showMapper)
     {
-        $this->manageEmbeddedImageAdmins($pf);
-    }
-
-    private function manageEmbeddedImageAdmins($pf)
-    {
-        foreach ($this->getFormFieldDescriptions() as $fieldName => $fieldDescription) {
-            if ($fieldDescription->getType() === 'sonata_type_collection'
-                && ($associationMapping = $fieldDescription->getAssociationMapping())
-                && $associationMapping['targetEntity'] === 'Ant\Bundle\Entity\Image'
-            ) {
-                $getter  = 'get'.$fieldName;
-                $remover = 'remove'.$fieldName;
-
-                $images = $pf->$getter();
-
-                foreach ($images as $k => $image) {
-                    $request = $this->getRequest()->get($fieldDescription->getAdmin()->getUniqid());
-                    if ((!is_object($image->getUploadFile()) && !$image->getPath())
-                        || isset($request[$fieldName][$k]['_delete'])
-                    ) {
-                        $pf->$remover($image);
-                    } else {
-                        $image->setPortfolio($pf);
-                        $image->setUpdated(new \DateTime());
-                    }
-                }
-            }
-        }
+        $showMapper
+            ->add('description')
+            ->add('id')
+        ;
     }
 }

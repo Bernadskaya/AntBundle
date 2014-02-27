@@ -1,6 +1,0 @@
-contacts:
-    pattern:  /contacts
-    defaults: { _controller: "AntBundle:Page:show", id: "1" }
-services_1:
-    pattern:  /services
-    defaults: { _controller: "AntBundle:Page:show", id: "2" }

@@ -1,0 +1,10 @@
+portfolio:
+    path:     /
+    defaults: { _controller: "AntBundle:Portfolio:index" }
+
+portfolio_show:
+    path:     /{id}/show
+    defaults: { _controller: "AntBundle:Portfolio:show" }
+
+
+
